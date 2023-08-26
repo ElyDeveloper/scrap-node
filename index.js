@@ -1,4 +1,7 @@
 const { chromium } = require("playwright-chromium");
+const express = require("express");
+const { json } = require("express");
+const cors = require("cors");
 
 module.exports = async function (req, res) {
   const url = req.query.url;
@@ -36,7 +39,7 @@ const getUrlDownload = async (urlSocial) => {
   const linkElement = await page.$(linkSelector);
   const linkUrl = await linkElement.getAttribute("href");
 
-  // await page.screenshot({ path: "screenshot.png" });
+  await page.screenshot({ path: "screenshot.png" });
   await browser.close();
   return linkUrl;
 };
