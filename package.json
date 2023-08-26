@@ -11,20 +11,15 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.37.1",
-    "nodemon": "^3.0.1",
-    "playwright": "^1.37.1"
+    "nodemon": "^3.0.1"
   },
   "eslintConfig": {
     "extends": "standard"
   },
   "dependencies": {
     "playwright": "^1.37.1",
-    "playwright-chromium": "^1.37.1"
-=======
+    "playwright-chromium": "^1.37.1",
     "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "@playwright/test": "^1.37.1"
->>>>>>> parent of 59c010c (Solucion de dependencias)
+    "express": "^4.18.2"
   }
 }
