@@ -32,7 +32,7 @@ app.get("/download", async (req, res) => {
 });
 
 const getUrlDownload = async (urlSocial) => {
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
   await page.goto("https://es.savefrom.net/258JB/");
 
