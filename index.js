@@ -1,19 +1,23 @@
 const { chromium } = require("playwright-chromium");
 
-module.exports= async function (req, res) {
-  const url = req.query.url;
+module.exports = async function (context, req) {
+  context.log("JavaScript HTTP trigger function processed a request.");
+
+  const url = req.query.url || (req.body && req.body.url);
+
   try {
     const urlDownload = await getUrlDownload(url);
-    res.status(200).send({
-      url: urlDownload,
-    });
+    context.res = {
+      // status: 200, /* Defaults to 200 */
+      body: urlDownload,
+    };
   } catch (error) {
-    res.status(500).send({
-      error: error.message,
-    });
+    context.res = {
+      status: 401,
+      body: error,
+    };
   }
-}
-
+};
 const getUrlDownload = async (urlSocial) => {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
