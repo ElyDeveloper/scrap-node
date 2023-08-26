@@ -1,23 +1,6 @@
 const { chromium } = require("playwright-chromium");
-const express = require("express");
-const { json } = require("express");
-const cors = require("cors");
 
-const app = express();
-
-app.use(cors());
-app.use(json());
-
-app.listen(process.env.PORT || 4000, () => {
-  console.log("Servidor corriendo en el puerto: " + process.env.PORT || 4000);
-});
-app.get("/", async (req, res) => {
-  res.status(200).send({
-    message: "API DOWNLOADER",
-  });
-});
-
-app.get("/download", async (req, res) => {
+module.exports = async function (req, res) {
   const url = req.query.url;
   try {
     const urlDownload = await getUrlDownload(url);
@@ -29,7 +12,7 @@ app.get("/download", async (req, res) => {
       error: error.message,
     });
   }
-});
+}
 
 const getUrlDownload = async (urlSocial) => {
   const browser = await chromium.launch({ headless: true });
